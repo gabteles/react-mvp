@@ -1,0 +1,13 @@
+version: '2.1'
+services:
+  node:
+    image: node:latest
+    stdin_open: true
+    command: bash
+    working_dir: /app
+    volumes:
+      - .:/app
+    expose:
+      - 3000
+    ports:
+      - "${REACT_PORT:-6000}:3000"
