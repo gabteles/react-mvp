@@ -10,13 +10,38 @@ class LoginView extends PureComponent {
     this.state = {
       email: '',
       password: '',
+      loading: false,
     };
   }
+
+  //===== PRESENTER ACTIONS
+
+  showProgress() {
+    this.setState({ loading: true });
+  }
+
+  hideProgress() {
+    this.setState({ loading: false });
+  }
+
+  showLoginSuccess() {
+    alert("Login com sucesso!");
+  }
+
+  showLoginFatalError() {
+    alert("Não foi possível realizar o login. (Erro fatal)")
+  }
+
+  showLoginError(message) {
+    alert(message);
+  }
+
+  //===== VIEW MANAGEMENT
 
   handleChange = field => (event) => {
     const stateChange = {};
     stateChange[field] = event.target.value;
-    return stateChange;
+    this.setState(stateChange);
   };
 
   submitForm = (e) => {
@@ -24,7 +49,7 @@ class LoginView extends PureComponent {
     this.presenter.onLogin(this.state.email, this.state.password);
   };
 
-  render() {
+  loginFragment() {
     return (
       <form onSubmit={this.submitForm}>
         <input type="text" onChange={this.handleChange('email')} value={this.state.email} />
@@ -32,6 +57,16 @@ class LoginView extends PureComponent {
         <input type="submit" value="Login" />
       </form>
     );
+  }
+
+  progressFragment() {
+    return (
+      <p>Carregando...</p>
+    );
+  }
+
+  render() {
+    return this.state.loading ? this.progressFragment() : this.loginFragment();
   }
 };
 
