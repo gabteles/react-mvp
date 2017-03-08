@@ -4,7 +4,6 @@ import { UIView } from 'ui-router-react';
 class LayoutView extends PureComponent {
   constructor(props) {
     super(props);
-    console.log(props)
     props.presenter.setView(this);
   }
 

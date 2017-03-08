@@ -1,18 +1,16 @@
-import { ConnectComponent } from './util';
+import { ConnectComponent, requireStates } from './util';
 
 import * as Layout from './core/layout';
-import * as Home from './components/home';
 
-
-export default [
+const initialStates = [
   {
     name: 'app',
     abstract: true,
     component: ConnectComponent(Layout.View, Layout.Presenter),
   },
-  {
-    name: 'app.home',
-    url: '/home',
-    component: ConnectComponent(Home.View, Home.Presenter),
-  }
 ];
+
+const context = require.context('./components/', true, /index\.js$/);
+const States = requireStates(context, initialStates);
+
+export default States;

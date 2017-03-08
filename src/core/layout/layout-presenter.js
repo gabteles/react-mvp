@@ -1,5 +1,5 @@
 class LayoutPresenter {
-  setView = (view) => {
+  setView(view) {
     console.log("Setting view: ", view);
   };
 

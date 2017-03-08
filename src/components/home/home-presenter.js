@@ -1,5 +1,5 @@
 class HomePresenter {
-  setView = (view) => {
+  setView(view) {
     console.log("Setting view in HomePresenter: ", view);
   };
 }
