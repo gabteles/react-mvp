@@ -1,6 +1,6 @@
 import { ConnectComponent, requireStates } from './util';
 
-import * as Layout from './core/layout';
+import * as Layout from './core/view/layout';
 
 const initialStates = [
   {
