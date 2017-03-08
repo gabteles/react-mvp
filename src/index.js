@@ -1,12 +1,19 @@
-/*
 import React from 'react';
 import ReactDOM from 'react-dom';
-const App = () => (
-  <h1>Hello World</h1>
-);
+
+import { UIRouter, UIView, pushStateLocationPlugin } from 'ui-router-react';
+
+import states from './states';
+
+import './index.css';
+
+const plugins = [
+  pushStateLocationPlugin
+];
 
 ReactDOM.render(
-  <App />,
+  <UIRouter plugins={plugins} states={states}>
+    <UIView/>
+  </UIRouter>,
   document.getElementById('root')
 );
-*/
