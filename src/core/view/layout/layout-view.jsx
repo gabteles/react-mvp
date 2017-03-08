@@ -1,22 +1,16 @@
 import React, { PureComponent } from 'react';
 import { UIView } from 'ui-router-react';
 
-class LayoutView extends PureComponent {
-  constructor(props) {
-    super(props);
-    props.presenter.setView(this);
-  }
+import './layout.css';
 
-  render = () => (
-    <article>
-      <aside>
-        aside
-      </aside>
+class LayoutView extends PureComponent {
+  render() {
+    return (
       <main>
         <UIView />
       </main>
-    </article>
-  );
+    );
+  }
 };
 
 LayoutView.propTypes = {
