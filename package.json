@@ -50,9 +50,9 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js && sw-precache --config=sw-precache-config.js",
+    "build": "node scripts/build.js && rm build/service-worker.js && sw-precache --config=sw-precache-config.js",
     "test": "node scripts/test.js --env=jsdom",
-    "serve-build": "node scripts/build.js && pushstate-server build 3000"
+    "serve-build": "npm run build && pushstate-server build 3000"
   },
   "jest": {
     "collectCoverageFrom": [
