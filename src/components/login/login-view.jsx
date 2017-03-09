@@ -1,4 +1,10 @@
 import React, { PureComponent } from 'react';
+import { Row, Col } from 'react-flexbox-grid';
+import { Button, Form, Message, Container } from 'semantic-ui-react'
+
+import * as assets from './assets';
+
+import './login.css';
 
 class LoginView extends PureComponent {
   constructor(props) {
@@ -11,6 +17,7 @@ class LoginView extends PureComponent {
       email: '',
       password: '',
       loading: false,
+      error: null,
     };
   }
 
@@ -25,15 +32,16 @@ class LoginView extends PureComponent {
   }
 
   showLoginSuccess() {
-    alert("Login com sucesso!");
+    this.setState({ loading: true });
+    setTimeout(() => alert("Aqui ocorre redirecionamento para próxima página."), 3000);
   }
 
   showLoginFatalError() {
-    alert("Não foi possível realizar o login. (Erro fatal)")
+    this.setState({ error: "Não foi possível realizar o login. (Erro fatal)" });
   }
 
   showLoginError(message) {
-    alert(message);
+    this.setState({ error: message });
   }
 
   //===== VIEW MANAGEMENT
@@ -49,24 +57,45 @@ class LoginView extends PureComponent {
     this.presenter.onLogin(this.state.email, this.state.password);
   };
 
-  loginFragment() {
-    return (
-      <form onSubmit={this.submitForm}>
-        <input type="text" onChange={this.handleChange('email')} value={this.state.email} />
-        <input type="password" onChange={this.handleChange('password')} value={this.state.password} />
-        <input type="submit" value="Login" />
-      </form>
-    );
-  }
-
-  progressFragment() {
-    return (
-      <p>Carregando...</p>
-    );
-  }
-
   render() {
-    return this.state.loading ? this.progressFragment() : this.loginFragment();
+    return (
+      <div className="layout-full-height grid-container" id="login">
+        <Row className="layout-full-height" middle="xs">
+          <Col xs={12}>
+            <Container textAlign='center'>
+              <img src={assets.logo} alt="PDVend" />
+            </Container>
+            <Row center="xs">
+              <Col xs={12} lg={4}>
+                <Container className="panel" textAlign="left">
+                  <Form onSubmit={this.submitForm} loading={this.state.loading} error={!!this.state.error}>
+                    <Form.Input
+                      label='Email'
+                      placeholder='Digite seu email'
+                      onChange={this.handleChange('email')}
+                      value={this.state.email}
+                      type="email"
+                    />
+                    <Form.Input
+                      label='Senha'
+                      placeholder='Digite sua senha'
+                      onChange={this.handleChange('password')}
+                      value={this.state.password}
+                      type="password"
+                    />
+
+                    <Container textAlign="center">
+                      <Message error content={this.state.error} />
+                      <Button inverted color='green'>Login</Button>
+                    </Container>
+                  </Form>
+                </Container>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </div>
+    );
   }
 };
 

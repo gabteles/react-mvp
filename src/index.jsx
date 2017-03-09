@@ -7,6 +7,7 @@ import BaseService from './core/service/base-service';
 
 import states from './states';
 
+import 'semantic-ui-css/semantic.css';
 import './index.css';
 
 BaseService.config({
