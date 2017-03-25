@@ -1,6 +1,5 @@
 /*global emit*/
 import PouchDB from 'pouchdb';
-import PouchDBUpsert from 'pouchdb-upsert';
 import sha512 from 'sha512';
 
 class UserPersistence {
@@ -17,7 +16,6 @@ class UserPersistence {
   }
 
   constructor(props) {
-    PouchDB.plugin(PouchDBUpsert);
     this.db = new PouchDB('users');
   }
 
@@ -58,7 +56,7 @@ class UserPersistence {
     try {
       const hexPassword = sha512(password).toString('hex');
       const result = await this.db.query('users/authentication', { key: [email, hexPassword] });
-      return (result.total_rows === 1);
+      return (result.rows.length === 1);
     } catch (e) {
       // TODO: Maybe handle errors here
       console.error(e);
