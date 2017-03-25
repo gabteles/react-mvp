@@ -10,7 +10,7 @@ const initialStates = [
   },
 ];
 
-const context = require.context('./components/', true, /index\.js$/);
+const context = require.context('./components/', true, /\.\/[^/]+\/index\.js$/);
 const States = requireStates(context, initialStates);
 
 export default States;
