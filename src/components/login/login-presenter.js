@@ -2,7 +2,6 @@ import { UserDatasource } from '../../core/datasource';
 
 class LoginPresenter {
   setView(view) {
-    console.log("Setting view in LoginPresenter: ", view);
     this.view = view;
   };
 
