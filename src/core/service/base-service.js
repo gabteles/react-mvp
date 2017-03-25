@@ -5,17 +5,13 @@ class BaseService {
     baseUrl: '',
   };
 
-  contructor() {
-    throw new Error('Cannot instantiate service. Use static methods.');
-  }
-
   static config(config) {
     if (!!config.baseUrl) {
       BaseService._config.baseUrl = config.baseUrl;
     }
   }
 
-  static async post(url, body = {}, config = {}) {
+  async post(url, body = {}, config = {}) {
     let response, success;
 
     try {

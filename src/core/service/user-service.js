@@ -1,15 +1,25 @@
 import BaseService from './base-service';
 
 class UserService extends BaseService {
-  static async signIn(email, password) {
+  static _instance;
+
+  static async getInstance() {
+    if (!UserService._instance) {
+      UserService._instance = new UserService();
+    }
+
+    return UserService._instance;
+  }
+
+  async signIn(email, password) {
     const response = await this.post('/users/sign_in.json', { user: { email, password } });
 
     if (response.success) {
-      return { success: true, fatalError: false };
+      return { success: true, fatal: false, data: response.data };
     } else if (response.fatal) {
-      return { success: false, fatalError: true };
+      return { success: false, fatal: true };
     } else {
-      return { success: false, fatalError: false, error: response.data.error };
+      return { success: false, fatal: false, error: response.data.error };
     }
   }
 }

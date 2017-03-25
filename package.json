@@ -7,11 +7,14 @@
     "babel-polyfill": "^6.23.0",
     "babel-preset-stage-0": "^6.22.0",
     "flexboxgrid": "^6.3.1",
+    "pouchdb": "^6.1.2",
+    "pouchdb-upsert": "^2.2.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-flexbox-grid": "^0.10.2",
     "semantic-ui-css": "^2.2.9",
     "semantic-ui-react": "^0.67.0",
+    "sha512": "0.0.1",
     "ui-router-react": "^0.4.0"
   },
   "devDependencies": {

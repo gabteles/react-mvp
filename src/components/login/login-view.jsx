@@ -33,7 +33,7 @@ class LoginView extends PureComponent {
 
   showLoginSuccess() {
     this.setState({ loading: true });
-    setTimeout(() => alert("Aqui ocorre redirecionamento para próxima página."), 3000);
+    alert("Aqui ocorre redirecionamento para próxima página.");
   }
 
   showLoginFatalError() {
