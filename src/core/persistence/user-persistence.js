@@ -31,7 +31,6 @@ class UserPersistence {
       }
     };
 
-    // save it
     try {
       await this.db.put(queries);
     } catch (e) {
